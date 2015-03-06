@@ -58,7 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Where to go to get started
-  config.vm.post_up_message = "Open a browser to http://localhost:9000/ to get started."
+  #config.vm.post_up_message = "Open a browser to http://localhost:9000/ to get started."
   
   # Azure:
   config.vm.provider :azure do |azure, override|
