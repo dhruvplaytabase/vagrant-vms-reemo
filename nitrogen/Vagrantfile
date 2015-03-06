@@ -29,8 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 9000, host: 9000
 
   # SSH configuration
-  config.ssh.username = 'playtabase'
-  config.ssh.password = 'MyReemo1'
+  # config.ssh.username = 'vagrant'
+  # config.ssh.password = 'V8gr@nt'
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -68,9 +68,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     azure.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
     azure.vm_image = 'b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_1-LTS-amd64-server-20140909-en-us-30GB'
     azure.vm_size = "Medium"
-    azure.vm_user = 'playtabase'
-    azure.vm_password = 'MyReemo1'
-    azure.vm_name = ENV['n2reemo']
+    azure.vm_user = 'vagrant'
+    azure.vm_password = 'V8gr@nt'
+    azure.vm_name = ENV['NITROGEN_VM_NAME']
     azure.cloud_service_name = azure.vm_name
     azure.deployment_name = "deployment-0"
     azure.vm_location = 'West US'
@@ -78,9 +78,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     azure.ssh_certificate_file = ENV['NITROGEN_CERT']
     azure.ssh_port = '22'
     azure.tcp_endpoints = '3030,9000'
-    override.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: [".vagrant/", ".git/", ".gitignore", "*.pem", "*.key", "*.cert"]
-    override.vm.post_up_message = "Open a browser to http://#{ENV['n2reemo']}.cloudapp.net:9000/ to get started."
-    override.vm.provision :shell, :inline => $azure_install, :args => "#{ENV['n2reemo']}.cloudapp.net"
+    override.vm.synced_folder ".", "/playtabase", type: "rsync", rsync__exclude: [".vagrant/", ".git/", ".gitignore", "*.pem", "*.key", "*.cert"]
+    override.vm.post_up_message = "Open a browser to http://#{ENV['NITROGEN_VM_NAME']}.cloudapp.net:9000/ to get started."
+    override.vm.provision :shell, :inline => $azure_install, :args => "#{ENV['NITROGEN_VM_NAME']}.cloudapp.net"
   end
 
   # Provision (install software) on the machine
